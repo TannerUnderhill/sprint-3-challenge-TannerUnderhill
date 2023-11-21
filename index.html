@@ -43,7 +43,7 @@
     // ❗ Do not rename the classes provided
     // ❗ Do not alter the position of the script tags
     // ❗ Debug properly using the Console
-
+ 
     // 👉 CHALLENGE 1 - Integers
     class Integers {
       // 🧠 Constructor takes **any** number of arguments, which are integers
@@ -58,9 +58,39 @@
       // 🧠 Implement a `getAllReversed` method which returns the ints in reverse order
       // ❗ WARNING: except for `getAllReversed`, methods must respect the order of the integers
       // ❗ WARNING: note that none of the methods actually mutate the `ints` property
-
+      constructor(...Integers){
+        this.ints = Integers
+        }
+        getAll() {
+          return this.ints
+        }
+        getEvens(){
+         return this.ints.filter(num => num % 2 === 0)
+        }
+        getNegatives(){
+          return this.ints.filter(num => num < 0)
+        }
+        getAllSquared(){
+          return this.ints.map(num => num ** 2 )
+        }
+        pop(){
+          return this.ints.pop()
+        }
+        push(foo){
+          this.ints.push(foo)
+          return this.ints
+        }
+        getEveryNth(n){
+          let final = []
+          for(let i = 0; i < this.ints.length; i+=n){
+            final.push(this.ints[i])
+          }
+        return final
+        }
+        getAllReversed(){
+          return this.ints.toReversed()
+        }
     }
-
     // 👉 CHALLENGE 2 NerfGun
     class NerfGun {
       // 🧠 Constructor takes one argument: the total number of projectiles supported by the instance
@@ -76,7 +106,43 @@
       //      * When engaging the safety, return "Safety enabled!"
       //      * When disengaging the safety, return "Safety disabled!"
       // 🌟 HINT: instances need to keep track of their maximum capacity as well as their current capacity
-
+    constructor(magSize){
+      this.capacity = magSize
+      this.bulletCount = this.capacity
+      this.safetyOn = true
+      }
+      shoot(){
+        if(this.bulletCount > 0 && !this.safetyOn){
+          this.bulletCount--
+          return "Bang!"
+        }
+        else{
+          return "Click!"
+        }
+      }
+      reload(bullets){
+        if (typeof bullets === 'number' && bullets > 0) {
+          if (this.bulletCount + bullets > this.capacity) {
+            this.bulletCount = this.capacity;
+          } else {
+            this.bulletCount += bullets;
+          }
+          return `${this.bulletCount} projectiles left!`;
+        } 
+        else {
+          return "Error reloading!";
+        }
+      }
+      toggleSafety(){
+        if(this.safetyOn){
+          this.safetyOn = false
+          return "Safety disabled!"
+        }
+        if(!this.safetyOn){
+          this.safetyOn = true
+          return "Safety enabled!"
+        }
+      }  
     }
 
     // 👉 CHALLENGE 3 EBook
@@ -95,8 +161,25 @@
       //    ebook.next() // returns null
       // 🌟 HINT: remember about the `slice` method which strings and arrays have
       // ❗ Feel free to implement `back`, although this is not required nor graded
-
-    }
+      constructor(string, num){
+        this.string = string
+        this.pageLimit = num
+        this.currentPage = 0
+      }
+      next(){
+        if(this.currentPage * this.pageLimit > this.string.length){
+        return null
+        }
+        const start = this.currentPage * this.pageLimit
+        const end = start + this.pageLimit
+        const nextPage = this.string.slice(start, end)
+        this.currentPage++
+        return nextPage
+       }
+      }
+      
+      
+    
 
     // 👉 CHALLENGE 4 AntFarm
     class AntFarm {
@@ -130,8 +213,17 @@
       //      console.log(list) // prints ["a"]
       // 👉 HINT: if you are not feeling confident with map and filter, solve the problem with for loops,
       //      and with the piece of mind of all tests passing, refactor to use map/filter
+        constructor(...antNames){
+          this.antNames = antNames
+          this.health = 100
+    }
+    work(){
 
     }
+    feed(){
+      
+    }
+  }
 
     // 🧪 TESTS, do not make any changes below this line ===================
     // 🧪 TESTS, do not make any changes below this line ===================
