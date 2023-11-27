@@ -88,9 +88,13 @@
         return final
         }
         getAllReversed(){
-          return this.ints.toReversed()
+          const reversed = [];
+          for (let i = this.ints.length - 1; i >= 0; i--) {
+          reversed.push(this.ints[i]);
         }
-    }
+        return reversed;
+        }
+        }
     // 👉 CHALLENGE 2 NerfGun
     class NerfGun {
       // 🧠 Constructor takes one argument: the total number of projectiles supported by the instance
@@ -217,7 +221,6 @@
         this.ants = antsNames.map(name => { 
           return {name, health: 100}
         })
-        console.log(this.ants)
       }
       
       work(){
