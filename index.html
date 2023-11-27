@@ -213,18 +213,43 @@
       //      console.log(list) // prints ["a"]
       // 👉 HINT: if you are not feeling confident with map and filter, solve the problem with for loops,
       //      and with the piece of mind of all tests passing, refactor to use map/filter
-        constructor(...antNames){
-          this.antNames = antNames
-          this.health = 100
-    }
-    work(){
-
-    }
-    feed(){
+      constructor(...antsNames) {
+        this.ants = antsNames.map(name => { 
+          return {name, health: 100}
+        })
+        console.log(this.ants)
+      }
       
+      work(){
+        const buglength = this.ants.length
+        if (!buglength) {
+          return "No ants here. Did you work them to death?"
+        }
+      this.ants = this.ants.map(ants => {
+        ants.health -= 20
+        return ants
+      })
+      this.ants = this.ants.filter(ant => {return ant.health > 0})
+          return `${buglength} ants starting work!`
+        }
+        
+      feed(antname){
+        let message = ""
+        this.ants = this.ants.map(ants => {
+          if(ants.name === antname){
+            ants.health += 15
+            message = "Yum!"
+          } 
+        return ants
+      })
+      if(message === "Yum!"){
+        return message
+      }
+      else{
+        return `${antname} not found!`
+      }
+      }
     }
-  }
-
     // 🧪 TESTS, do not make any changes below this line ===================
     // 🧪 TESTS, do not make any changes below this line ===================
     // 🧪 TESTS, do not make any changes below this line ===================
